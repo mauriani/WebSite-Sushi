@@ -6,10 +6,15 @@
 
     <title>Sushi you again?</title>
 
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
   </head>
 
   <body>
+    <!--defer - Um script que será baixado em paralelo 
+      para analisar a página e executado depois que a página terminar de analisar
+    -->
+    <script defer src="../javascript/index.js"></script>
+
     <header>
       <nav>
         <a class="logo" src="" alt="logo da empresa">Sushi you again</a>
@@ -34,20 +39,17 @@
       </nav>
     </header>
 
-    <main>
-      <script
-        async
-        src="https://cse.google.com/cse.js?cx=956f83d1a1b3cdad6"
-      ></script>
-      <div class="gcse-searchbox-only"></div>
-
-      <section class="img-wrapper">
-        <img
-          src="images/banner1.png"
-          alt="Promoção aniversáriante do mês."
-          width="100%"
-          height="100%"
-        />
+    <main class="main-menu">
+      <section class="container-menu">
+        <div class="card">
+          <h1>Temaki salmão</h1>
+          <img
+            src="https://restaurantetemakeria.com.br/site/wp-content/uploads/2019/09/deliverytemaki-1.png"
+            alt="Dias de rodizio, de segunda á sábado."
+          />
+          <h2>R$ 20,00 uni</h2>
+          <p>Alga, arroz, creme cheese, salmão e cebolinha.</p>
+        </div>
       </section>
     </main>
   </body>
