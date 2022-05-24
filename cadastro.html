@@ -9,6 +9,33 @@
     <link rel="stylesheet" href="css/styles.css" />
 
     <script language="javascript" type="text/javascript">
+      document
+        .getElementById("form")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+        });
+
+      function cpf(cpf) {
+        cpf = cpf.replace(/\D/g, "");
+        if (cpf.toString().length != 11 || /^(\d)\1{10}$/.test(cpf))
+          return false;
+        var result = true;
+        [9, 10].forEach(function (j) {
+          var soma = 0,
+            r;
+          cpf
+            .split(/(?=)/)
+            .splice(0, j)
+            .forEach(function (e, i) {
+              soma += parseInt(e) * (j + 2 - (i + 1));
+            });
+          r = soma % 11;
+          r = r < 2 ? 0 : 11 - r;
+          if (r != cpf.substring(j, j + 1)) result = false;
+        });
+        return result;
+      }
+
       function realizarCadastro() {
         var nome = document.getElementById("nome");
         var email = document.getElementById("email");
@@ -16,8 +43,7 @@
         var endereco = document.getElementById("endereco");
         var phone = document.getElementById("phone");
         var cep = document.getElementById("cep");
-
-        console.log(nome.value);
+        var password = document.getElementById("password");
 
         if (nome.value == "") {
           alert("Para continuar informe o seu nome");
@@ -28,12 +54,26 @@
           alert("Para continuar informe o seu E-mail");
           email.focus();
           return;
+        } else {
+          var re = /\S+@\S+\.\S+/;
+          var isValid = re.test(email.value);
+          if (isValid == false) {
+            alert("E-mail inválido");
+            return;
+          }
         }
 
         if (cpf.value == "") {
           alert("Para continuar informe o seu CPF");
           cpf.focus();
           return;
+        } else {
+          var isValid = this.cpf(cpf.value);
+
+          if (isValid == false) {
+            alert("O cpf é inválido, informe um cpf válido");
+            return;
+          }
         }
 
         if (endereco.value == "") {
@@ -49,11 +89,103 @@
         }
 
         if (cep.value == "") {
-          alert("Para continuar informe o seu telefone");
+          alert("Para continuar informe o seu cep");
           cep.focus();
           return;
         }
+
+        if (password.value == "") {
+          alert("Para continuar informe o campo de senha");
+          password.focus();
+          return;
+        }
       }
+
+      /*MASCARA*/
+
+      function mascara(i) {
+        var v = i.value;
+
+        if (isNaN(v[v.length - 1])) {
+          // impede entrar outro caractere que não seja número
+          i.value = v.substring(0, v.length - 1);
+          return;
+        }
+
+        i.setAttribute("maxlength", "14");
+        if (v.length == 3 || v.length == 7) i.value += ".";
+        if (v.length == 11) i.value += "-";
+      }
+
+      /* CAMPOS DE ENDEREÇO */
+
+      function limpa_formulário_cep() {
+        //Limpa valores do formulário de cep.
+        document.getElementById("endereco").value = "";
+        document.getElementById("bairro").value = "";
+        document.getElementById("cidade").value = "";
+        document.getElementById("uf").value = "";
+      }
+
+      /*ADICIONA VALUE AOS MEUS CAMPOS*/
+      function meu_callback(conteudo) {
+        if (!("erro" in conteudo)) {
+          //Atualiza os campos com os valores.
+          document.getElementById("endereco").value = conteudo.logradouro;
+          document.getElementById("bairro").value = conteudo.bairro;
+          document.getElementById("cidade").value = conteudo.localidade;
+          document.getElementById("uf").value = conteudo.uf;
+        } //end if.
+        else {
+          //CEP não Encontrado.
+          limpa_formulário_cep();
+          alert("CEP não encontrado.");
+        }
+      }
+
+      function pesquisacep(valor) {
+        //Nova variável "cep" somente com dígitos.
+
+        console.log(valor, "valor");
+        var cep = valor.replace(/\D/g, "");
+
+        //Verifica se campo cep possui valor informado.
+        if (cep != "") {
+          //Expressão regular para validar o CEP.
+          var validacep = /^[0-9]{8}$/;
+
+          //Valida o formato do CEP.
+          if (validacep.test(cep)) {
+            //Preenche os campos com "..." enquanto consulta webservice.
+            document.getElementById("endereco").value = "...";
+            document.getElementById("bairro").value = "...";
+            document.getElementById("cidade").value = "...";
+            document.getElementById("uf").value = "...";
+
+            //Cria um elemento javascript.
+            var script = document.createElement("script");
+
+            //Sincroniza com o callback.
+            script.src =
+              "https://viacep.com.br/ws/" +
+              cep +
+              "/json/?callback=meu_callback";
+
+            //Insere script no documento e carrega o conteúdo.
+            document.body.appendChild(script);
+          } //end if.
+          else {
+            //cep é inválido.
+            limpa_formulário_cep();
+            alert("Formato de CEP inválido.");
+          }
+        } else {
+          //cep sem valor, limpa formulário.
+          limpa_formulário_cep();
+        }
+      }
+
+      /* VALIDAR EMAIL*/
     </script>
   </head>
 
@@ -90,28 +222,23 @@
 
     <main>
       <section class="section-contact">
-        <h1>Cadastra-se</h1>
+        <h1>Cadastre-se</h1>
 
-        <form name="form">
+        <form name="form" id="form">
           <label for="nome">Nome completo:</label>
-          <input type="text" id="nome" name="nome" />
+          <input type="text" id="nome" name="nome" required />
 
           <label for="email">E-mail:</label>
-          <input type="email" id="email" name="email" />
+          <input type="email" id="email" name="email" required />
 
           <label for="cpf">CPF:</label>
           <input
             type="text"
             name="cpf"
             id="cpf"
-            \
-            pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-            \
-            title="Digite um CPF no formato: xxx.xxx.xxx-xx"
+            oninput="mascara(this)"
+            required
           />
-
-          <label for="endereco">Endereço:</label>
-          <input type="text" id="endereco" name="endereco" />
 
           <div class="row">
             <div class="column">
@@ -120,7 +247,8 @@
                 type="tel"
                 id="phone"
                 name="phone"
-                pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                required
+                placeholder="Ex.: (00) 0000-0000"
               />
             </div>
 
@@ -130,16 +258,30 @@
                 type="text"
                 name="CEP"
                 id="cep"
+                size="10"
+                maxlength="9"
+                onblur="pesquisacep(this.value);"
                 required
-                pattern="\d{5}-\d{3}"
               />
             </div>
           </div>
 
+          <label for="endereco">Endereço:</label>
+          <input type="text" id="endereco" name="endereco" />
+
+          <label for="bairro">Bairro:</label>
+          <input type="bairro" id="bairro" name="bairro" />
+
+          <label for="cidade">Cidade:</label>
+          <input type="cidade" id="cidade" name="cidade" />
+
+          <label for="uf">UF:</label>
+          <input type="uf" id="uf" name="uf" />
+
           <label for="pass">Senha (Min 8 caracteres):</label>
           <input
             type="password"
-            id="pass"
+            id="password"
             name="password"
             minlength="8"
             required
