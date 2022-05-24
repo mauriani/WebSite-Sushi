@@ -9,12 +9,6 @@
     <link rel="stylesheet" href="css/styles.css" />
 
     <script language="javascript" type="text/javascript">
-      document
-        .getElementById("form")
-        .addEventListener("click", function (event) {
-          event.preventDefault();
-        });
-
       function cpf(cpf) {
         cpf = cpf.replace(/\D/g, "");
         if (cpf.toString().length != 11 || /^(\d)\1{10}$/.test(cpf))
@@ -104,13 +98,12 @@
           nome.value != "" &&
           email.value != "" &&
           cpf.value != "" &&
+          phone.value != "" &&
           endereco.value != "" &&
           cep.value != "" &&
           password.value != ""
         ) {
-          if (isValidEmail == true && isValidCpf == true) {
-            alert("Dados cadastrados com sucesso");
-          }
+          alert("Dados cadastrados com sucesso");
         }
       }
 
