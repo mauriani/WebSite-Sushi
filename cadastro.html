@@ -56,8 +56,8 @@
           return;
         } else {
           var re = /\S+@\S+\.\S+/;
-          var isValid = re.test(email.value);
-          if (isValid == false) {
+          var isValidEmail = re.test(email.value);
+          if (isValidEmail == false) {
             alert("E-mail inválido");
             return;
           }
@@ -68,9 +68,9 @@
           cpf.focus();
           return;
         } else {
-          var isValid = this.cpf(cpf.value);
+          var isValidCpf = this.cpf(cpf.value);
 
-          if (isValid == false) {
+          if (isValidCpf == false) {
             alert("O cpf é inválido, informe um cpf válido");
             return;
           }
@@ -98,6 +98,19 @@
           alert("Para continuar informe o campo de senha");
           password.focus();
           return;
+        }
+
+        if (
+          nome.value != "" &&
+          email.value != "" &&
+          cpf.value != "" &&
+          endereco.value != "" &&
+          cep.value != "" &&
+          password.value != ""
+        ) {
+          if (isValidEmail == true && isValidCpf == true) {
+            alert("Dados cadastrados com sucesso");
+          }
         }
       }
 
@@ -184,8 +197,6 @@
           limpa_formulário_cep();
         }
       }
-
-      /* VALIDAR EMAIL*/
     </script>
   </head>
 
@@ -229,7 +240,13 @@
           <input type="text" id="nome" name="nome" required />
 
           <label for="email">E-mail:</label>
-          <input type="email" id="email" name="email" required />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Ex: johndoe@gmail.com"
+            required
+          />
 
           <label for="cpf">CPF:</label>
           <input
@@ -248,7 +265,7 @@
                 id="phone"
                 name="phone"
                 required
-                placeholder="Ex.: (00) 0000-0000"
+                placeholder="Ex: (00) 0000-0000"
               />
             </div>
 
