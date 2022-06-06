@@ -10,6 +10,14 @@ let accCookies = false;
 cadastroConfirmar?.addEventListener("click", function (e) {
   e.preventDefault();
 
+  let accCookies = Cookies.get("aceitaCookie");
+
+  console.log(accCookies);
+
+  if (accCookies) {
+    console.log("resre");
+  }
+
   let nome = document.getElementById("nome");
   let email = document.getElementById("email");
   let cpf = document.getElementById("cpf");
@@ -86,44 +94,40 @@ cadastroConfirmar?.addEventListener("click", function (e) {
     password: password.value,
   };
 
-  Cookies.get("accCookies");
+  // let accCookies = Cookies.get("aceitaCookie");
 
-  // if (accCookies == true) {
-  //   if (
-  //     nome.value != "" &&
-  //     email.value != "" &&
-  //     cpf.value != "" &&
-  //     phone.value != "" &&
-  //     endereco.value != "" &&
-  //     cep.value != "" &&
-  //     password.value != ""
-  //   ) {
-  //     let pessoa = {
-  //       nome: nome.value,
-  //       email: email.value,
-  //       cpf: cpf.value,
-  //       phone: phone.value,
-  //       endereco: endereco.value,
-  //       bairro: bairro.value,
-  //       cidade: cidade.value,
-  //       uf: uf.value,
-  //       cep: cep.value,
-  //       password: password.value,
-  //     };
+  // console.log(accCookies);
 
-  //     console.log("teste");
-
-  //     // // Transformar o objeto em string e salvar em localStorage
-  //     // localStorage.setItem("pessoa", JSON.stringify(pessoa));
-
-  //     // // Receber a string
-  //     // let pessoaString = localStorage.getItem("pessoa");
-  //     // // transformar em objeto novamente
-  //     // let pessoaObj = JSON.parse(pessoaString);
-  //     // console.log(pessoaObj.nome);
-  //     // alert("Dados cadastrados com sucesso");
-  //   }
+  // if (accCookies) {
+  //   console.log("teste");
   // }
+
+  if (accCookies) {
+    if (
+      nome.value != "" &&
+      email.value != "" &&
+      cpf.value != "" &&
+      phone.value != "" &&
+      endereco.value != "" &&
+      cep.value != "" &&
+      password.value != ""
+    ) {
+      let pessoa = {
+        nome: nome.value,
+        email: email.value,
+        cpf: cpf.value,
+        phone: phone.value,
+        endereco: endereco.value,
+        bairro: bairro.value,
+        cidade: cidade.value,
+        uf: uf.value,
+        cep: cep.value,
+        password: password.value,
+      };
+
+      Cookies.set(`${cpf.value}`, pessoa, { expires: 7 });
+    }
+  }
 });
 
 /* VALIDAR CPF */
@@ -299,7 +303,8 @@ function cookieConsent() {
 }
 
 function purecookieDismiss() {
-  Cookies.set("aceita", "true");
+  Cookies.set("aceitaCookie", "true", { sameSite: "strict" });
+
   pureFadeOut("cookieConsentContainer");
   // setCookie("purecookieDismiss", "1", 7), pureFadeOut("cookieConsentContainer");
 }
@@ -307,50 +312,3 @@ function purecookieDismiss() {
 function purecookieCancel() {
   pureFadeOut("cookieConsentContainer");
 }
-
-// function getCookie(e) {
-//   for (
-//     var o = e + "=", i = document.cookie.split(";"), t = 0;
-//     t < i.length;
-//     t++
-//   ) {
-//     for (var n = i[t]; " " == n.charAt(0); ) n = n.substring(1, n.length);
-//     if (0 == n.indexOf(o)) return n.substring(o.length, n.length);
-//   }
-//   return null;
-// }
-// function eraseCookie(e) {
-//   document.cookie = e + "=; Max-Age=-99999999;";
-// }
-// function cookieConsent() {
-//   getCookie("purecookieDismiss") ||
-//     ((document.body.innerHTML +=
-//       '<div class="cookieConsentContainer" id="cookieConsentContainer"><div class="cookieTitle"><a>' +
-//       purecookieTitle +
-//       '</a></div><div class="cookieDesc"><p>' +
-//       purecookieDesc +
-//       " " +
-//       purecookieLink +
-//       '</p></div><div class="cookieButton"><a onClick="purecookieDismiss();">' +
-//       purecookieButton +
-//       '</p></div><div class="cookieButtonCancel"><a onClick="purecookieCancel();">' +
-//       purecookieButtonCancel +
-//       "</a></div></div>"),
-//     pureFadeIn("cookieConsentContainer"));
-// }
-// function purecookieDismiss() {
-//   setCookie("purecookieDismiss", "1", 7), pureFadeOut("cookieConsentContainer");
-// }
-
-// function purecookieCancel() {
-//   pureFadeOut("cookieConsentContainer");
-// }
-// window.onload = function () {
-//   cookieConsent();
-// };
-
-// function setCookie(e, cookieName, value) {
-//   accCookies = true;
-// }
-
-Cookies.set("mauri", "value");
