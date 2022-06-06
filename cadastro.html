@@ -8,10 +8,10 @@
 
     <link rel="stylesheet" href="css/styles.css" />
 
-    <script src="javascript/index.js"></script>
+    <script src="javascript/index.js" defer="defer"></script>
   </head>
 
-  <body onload="checkCookie()">
+  <body>
     <header>
       <nav>
         <a class="logo" src="" alt="logo da empresa">Sushi you again</a>
@@ -46,7 +46,7 @@
       <section class="section-contact">
         <h1>Cadastre-se</h1>
 
-        <form name="form" id="form">
+        <form name="form" id="form" action="">
           <label for="nome">Nome completo:</label>
           <input type="text" id="nome" name="nome" required />
 
@@ -116,7 +116,7 @@
           />
 
           <div class="button">
-            <button type="submit" onClick="realizarCadastro()">Enviar</button>
+            <button type="submit" id="submit" value="Enviar">Enviar</button>
           </div>
         </form>
       </section>

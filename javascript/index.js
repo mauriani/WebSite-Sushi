@@ -1,17 +1,22 @@
-var time = new Date();
-console.log(
-  time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds()
-);
+const cadastroConfirmar = document.querySelector("#submit");
+let purecookieTitle = "Cookies.",
+  purecookieDesc = "Esse site usa cookie, você aceita usar os cookies?",
+  purecookieLink =
+    '<a href="https://www.cssscript.com/privacy-policy/" target="_blank">Para que serve?</a>',
+  purecookieButton = "Concordo",
+  purecookieButtonCancel = "Discordo";
+let accCookies = false;
 
-/* FUNÇÃO DE CADASTRO*/
-function realizarCadastro() {
-  var nome = document.getElementById("nome");
-  var email = document.getElementById("email");
-  var cpf = document.getElementById("cpf");
-  var endereco = document.getElementById("endereco");
-  var phone = document.getElementById("phone");
-  var cep = document.getElementById("cep");
-  var password = document.getElementById("password");
+cadastroConfirmar?.addEventListener("click", function (e) {
+  e.preventDefault();
+
+  let nome = document.getElementById("nome");
+  let email = document.getElementById("email");
+  let cpf = document.getElementById("cpf");
+  let endereco = document.getElementById("endereco");
+  let phone = document.getElementById("phone");
+  let cep = document.getElementById("cep");
+  let password = document.getElementById("password");
 
   if (nome.value == "") {
     alert("Para continuar informe o seu nome");
@@ -36,7 +41,7 @@ function realizarCadastro() {
     cpf.focus();
     return;
   } else {
-    var isValidCpf = this.cpf(cpf.value);
+    var isValidCpf = validarCpf(cpf.value);
 
     if (isValidCpf == false) {
       alert("O cpf é inválido, informe um cpf válido");
@@ -68,42 +73,61 @@ function realizarCadastro() {
     return;
   }
 
-  if (
-    nome.value != "" &&
-    email.value != "" &&
-    cpf.value != "" &&
-    phone.value != "" &&
-    endereco.value != "" &&
-    cep.value != "" &&
-    password.value != ""
-  ) {
-    let pessoa = {
-      nome: nome.value,
-      email: email.value,
-      cpf: cpf.value,
-      phone: phone.value,
-      endereco: endereco.value,
-      bairro: bairro.value,
-      cidade: cidade.value,
-      uf: uf.value,
-      cep: cep.value,
-      password: password.value,
-    };
+  let pessoa = {
+    nome: nome.value,
+    email: email.value,
+    cpf: cpf.value,
+    phone: phone.value,
+    endereco: endereco.value,
+    bairro: bairro.value,
+    cidade: cidade.value,
+    uf: uf.value,
+    cep: cep.value,
+    password: password.value,
+  };
 
-    // Transformar o objeto em string e salvar em localStorage
-    localStorage.setItem("pessoa", JSON.stringify(pessoa));
+  Cookies.get("accCookies");
 
-    // Receber a string
-    let pessoaString = localStorage.getItem("pessoa");
-    // transformar em objeto novamente
-    let pessoaObj = JSON.parse(pessoaString);
-    console.log(pessoaObj.nome);
-    alert("Dados cadastrados com sucesso");
-  }
-}
+  // if (accCookies == true) {
+  //   if (
+  //     nome.value != "" &&
+  //     email.value != "" &&
+  //     cpf.value != "" &&
+  //     phone.value != "" &&
+  //     endereco.value != "" &&
+  //     cep.value != "" &&
+  //     password.value != ""
+  //   ) {
+  //     let pessoa = {
+  //       nome: nome.value,
+  //       email: email.value,
+  //       cpf: cpf.value,
+  //       phone: phone.value,
+  //       endereco: endereco.value,
+  //       bairro: bairro.value,
+  //       cidade: cidade.value,
+  //       uf: uf.value,
+  //       cep: cep.value,
+  //       password: password.value,
+  //     };
+
+  //     console.log("teste");
+
+  //     // // Transformar o objeto em string e salvar em localStorage
+  //     // localStorage.setItem("pessoa", JSON.stringify(pessoa));
+
+  //     // // Receber a string
+  //     // let pessoaString = localStorage.getItem("pessoa");
+  //     // // transformar em objeto novamente
+  //     // let pessoaObj = JSON.parse(pessoaString);
+  //     // console.log(pessoaObj.nome);
+  //     // alert("Dados cadastrados com sucesso");
+  //   }
+  // }
+});
 
 /* VALIDAR CPF */
-function cpf(cpf) {
+function validarCpf(cpf) {
   cpf = cpf.replace(/\D/g, "");
   if (cpf.toString().length != 11 || /^(\d)\1{10}$/.test(cpf)) return false;
   var result = true;
@@ -205,6 +229,16 @@ function pesquisacep(valor) {
   }
 }
 
+function pureFadeIn(e, o) {
+  var i = document.getElementById(e);
+  (i.style.opacity = 0),
+    (i.style.display = o || "block"),
+    (function e() {
+      var o = parseFloat(i.style.opacity);
+      (o += 0.02) > 1 || ((i.style.opacity = o), requestAnimationFrame(e));
+    })();
+}
+
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
@@ -228,37 +262,95 @@ function getCookie(cname) {
   return "";
 }
 
-function checkCookie() {
-  let user = getCookie("username");
-  if (user != "") {
-    alert("Bem vindo de volta" + user);
-  } else {
-    user = prompt("Informe o nome:", "");
-    if (user != "" && user != null) {
-      setCookie("username", user, 30);
-      alert("Bem vindo " + user);
-    }
-  }
-}
-function setCookie(cname, cvalue, exdays) {
-  const d = new Date();
-  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-  let expires = "expires=" + d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+function pureFadeIn(e, o) {
+  var i = document.getElementById(e);
+  (i.style.opacity = 0),
+    (i.style.display = o || "block"),
+    (function e() {
+      var o = parseFloat(i.style.opacity);
+      (o += 0.02) > 1 || ((i.style.opacity = o), requestAnimationFrame(e));
+    })();
 }
 
-function getCookie(cname) {
-  let name = cname + "=";
-  let decodedCookie = decodeURIComponent(document.cookie);
-  let ca = decodedCookie.split(";");
-  for (let i = 0; i < ca.length; i++) {
-    let c = ca[i];
-    while (c.charAt(0) == " ") {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
+function pureFadeOut(e) {
+  var o = document.getElementById(e);
+  (o.style.opacity = 1),
+    (function e() {
+      (o.style.opacity -= 0.02) < 0
+        ? (o.style.display = "none")
+        : requestAnimationFrame(e);
+    })();
 }
+
+function cookieConsent() {
+  (document.body.innerHTML +=
+    '<div class="cookieConsentContainer" id="cookieConsentContainer"><div class="cookieTitle"><a>' +
+    purecookieTitle +
+    '</a></div><div class="cookieDesc"><p>' +
+    purecookieDesc +
+    " " +
+    purecookieLink +
+    '</p></div><div class="cookieButton"><a onClick="purecookieDismiss();">' +
+    purecookieButton +
+    '</p></div><div class="cookieButtonCancel"><a onClick="purecookieCancel();">' +
+    purecookieButtonCancel +
+    "</a></div></div>"),
+    pureFadeIn("cookieConsentContainer");
+}
+
+function purecookieDismiss() {
+  Cookies.set("aceita", "true");
+  pureFadeOut("cookieConsentContainer");
+  // setCookie("purecookieDismiss", "1", 7), pureFadeOut("cookieConsentContainer");
+}
+
+function purecookieCancel() {
+  pureFadeOut("cookieConsentContainer");
+}
+
+// function getCookie(e) {
+//   for (
+//     var o = e + "=", i = document.cookie.split(";"), t = 0;
+//     t < i.length;
+//     t++
+//   ) {
+//     for (var n = i[t]; " " == n.charAt(0); ) n = n.substring(1, n.length);
+//     if (0 == n.indexOf(o)) return n.substring(o.length, n.length);
+//   }
+//   return null;
+// }
+// function eraseCookie(e) {
+//   document.cookie = e + "=; Max-Age=-99999999;";
+// }
+// function cookieConsent() {
+//   getCookie("purecookieDismiss") ||
+//     ((document.body.innerHTML +=
+//       '<div class="cookieConsentContainer" id="cookieConsentContainer"><div class="cookieTitle"><a>' +
+//       purecookieTitle +
+//       '</a></div><div class="cookieDesc"><p>' +
+//       purecookieDesc +
+//       " " +
+//       purecookieLink +
+//       '</p></div><div class="cookieButton"><a onClick="purecookieDismiss();">' +
+//       purecookieButton +
+//       '</p></div><div class="cookieButtonCancel"><a onClick="purecookieCancel();">' +
+//       purecookieButtonCancel +
+//       "</a></div></div>"),
+//     pureFadeIn("cookieConsentContainer"));
+// }
+// function purecookieDismiss() {
+//   setCookie("purecookieDismiss", "1", 7), pureFadeOut("cookieConsentContainer");
+// }
+
+// function purecookieCancel() {
+//   pureFadeOut("cookieConsentContainer");
+// }
+// window.onload = function () {
+//   cookieConsent();
+// };
+
+// function setCookie(e, cookieName, value) {
+//   accCookies = true;
+// }
+
+Cookies.set("mauri", "value");
