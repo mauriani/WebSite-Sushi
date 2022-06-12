@@ -103,6 +103,13 @@ nav {
 
   justify-content: center;
 }
+
+#moreInfo {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 .card {
   display: block;
   color: #23232e;
@@ -110,7 +117,7 @@ nav {
   padding: 20px;
   align-items: center;
 
-  height: 340px;
+  height: 360px;
   width: 220px;
 
   border-radius: 10px;
