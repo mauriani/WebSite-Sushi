@@ -13,6 +13,21 @@ var itens = [
     preco: "25,00 uni",
     descricao: "Camarão ao alho e óleo, cream cheese e alho torrado.",
   },
+
+  {
+    titulo: "Temaki Philadelphia",
+    image: "./images/temaki-filadelfia.png",
+    descricaoImage: "Temaki Philadelphia",
+    preco: "28,98 uni",
+    descricao: "Salmão fresco em cubos com creem cheese e cebolinha.",
+  },
+  {
+    titulo: "Sashimi Salmão Fresco",
+    image: "./images/sashimi-salmao.png",
+    descricaoImage: "Sashimi Salmão Fresco",
+    preco: "30,99 uni",
+    descricao: "Salmão fresco.(8 und)",
+  },
   {
     titulo: "Combo 60 Peças",
     image: "./images/combo-60-pecas.png",
@@ -35,6 +50,14 @@ var itens = [
     descricaoImage: "Combo 80 Peças Especiais",
     preco: "100,00",
     descricao: `Sashimi Salmão (5und)</br>Sashimi de Camarão (5und)</br>Niguiri Salmão (5und)</br>Joy de Salmão (5und)</br>Joy de Camarão (5und)</br>Sashimi Empanado (5und)`,
+  },
+
+  {
+    titulo: "Yakisoba Misto",
+    image: "./images/yakissoba-misto.png",
+    descricaoImage: "Yakisoba Misto",
+    preco: "25,99",
+    descricao: `Carne, frango, macarrão japonês e legumes`,
   },
 ];
 
