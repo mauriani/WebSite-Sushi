@@ -12,6 +12,7 @@
   <body>
     <!--defer - Um script que será baixado em paralelo para analisar a página e executado depois que a página terminar de analisar
     -->
+
     <script defer src="../javascript/index.js"></script>
 
     <header>
@@ -74,10 +75,23 @@
             <input
               type="hidden"
               name="sitesearch"
-              value="http://suhiagain.com"
+              value="https://sushiyouagain.netlify.app/"
             />
             <input type="text" name="q" />
             <input type="submit" value="Pesquisar" />
+          </form>
+
+          <form action="/busca" method="get">
+            <input
+              type="search"
+              name="q"
+              class="form-control"
+              placeholder="Buscar por..."
+              required
+            />
+            <button type="submit" class="btn btn-custom">
+              <i class="fa fa-search"></i>
+            </button>
           </form>
         </section>
       </footer>

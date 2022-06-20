@@ -5,7 +5,9 @@ let purecookieTitle = "Cookies.",
     '<a href="https://www.cssscript.com/privacy-policy/" target="_blank">Para que serve?</a>',
   purecookieButton = "Concordo",
   purecookieButtonCancel = "Discordo";
+
 let accCookies = false;
+const { app } = require("./firebaseConfig");
 
 cadastroConfirmar?.addEventListener("click", function (e) {
   e.preventDefault();
@@ -87,14 +89,6 @@ cadastroConfirmar?.addEventListener("click", function (e) {
     cep: cep.value,
     password: password.value,
   };
-
-  // let accCookies = Cookies.get("aceitaCookie");
-
-  // console.log(accCookies);
-
-  // if (accCookies) {
-  //   console.log("teste");
-  // }
 
   if (accCookies) {
     if (
@@ -277,7 +271,6 @@ function purecookieDismiss() {
   Cookies.set("aceitaCookie", "true", { sameSite: "strict" });
 
   pureFadeOut("cookieConsentContainer");
-  // setCookie("purecookieDismiss", "1", 7), pureFadeOut("cookieConsentContainer");
 }
 
 function purecookieCancel() {
