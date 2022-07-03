@@ -21,7 +21,7 @@ const nav = `
   </li>
 
   <li>
-    <a href="cadastro.html" class="menu-link">Login</a>
+    <a href="login.html" class="menu-link">Login</a>
   </li>
 </ul>
 

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Sushi you again?</title>
+
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/header.css" />
+
+    <script defer src="javascript/navegacao.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.0.0/js.cookie.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore-compat.js"></script>
+    <script>
+      const config = {
+        apiKey: "AIzaSyCDIxGRfGs9LOxsKSzQJFut2PCZ5FjAcg4",
+        authDomain: "sushi-you-again.firebaseapp.com",
+        projectId: "sushi-you-again",
+        storageBucket: "sushi-you-again.appspot.com",
+        messagingSenderId: "604242790877",
+        appId: "1:604242790877:web:001494b7e89b86b3054e34",
+        measurementId: "G-NDSDQRVPM6",
+      };
+
+      firebase.initializeApp(config);
+      const db = firebase.firestore();
+    </script>
+
+    <script src="javascript/index.js" defer="defer"></script>
+  </head>
+
+  <body>
+    <header>
+      <img src="images/logo.svg" alt="logo" />
+      <nav id="app-header"></nav>
+    </header>
+
+    <main>
+      <section class="section-contact">
+        <h1>Login</h1>
+
+        <form name="form" id="form" action="">
+          <label for="email">E-mail:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Ex: johndoe@gmail.com"
+            required
+          />
+
+          <label for="pass">Senha (Min 8 caracteres):</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            minlength="8"
+            required
+          />
+
+          <div class="button">
+            <button type="submit" id="submit" value="Enviar">Enviar</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>

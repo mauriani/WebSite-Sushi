@@ -80,7 +80,7 @@ header li:last-child {
   }
   nav ul {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
   }
   header li a {
     font-size: 1rem;
