@@ -8,22 +8,7 @@ let purecookieTitle = "Cookies.",
 
 let accCookies = false;
 
-async function cadastroFirebase() {
-  const users = await db
-    .collection("users")
-    .get()
-    .then((snapshot) => {
-      snapshot.docs.map((doc) => {
-        console.log(doc.data(), "doc");
-      });
-    });
-
-  console.log(users, 'user');
-}
-
-cadastroFirebase(db);
-
-cadastroConfirmar?.addEventListener("click", async function (e) {
+cadastroConfirmar?.addEventListener("click", function (e) {
   e.preventDefault();
 
   let accCookies = Cookies.get("aceitaCookie");
@@ -103,16 +88,6 @@ cadastroConfirmar?.addEventListener("click", async function (e) {
     cep: cep.value,
     password: password.value,
   };
-
-  var exists = db.collection("users").get().then((querySnapshot) => {
-    querySnapshot.map((doc) => {
-        console.log(`${doc.id} => ${doc.data()}`);
-    });
-
-
-  // await db.collection("users").add(JSON.parse(JSON.stringify(pessoa)));
-
-  // alert("Sucesso", "Dados cadastrados com sucesso!");
 
   if (accCookies) {
     if (
@@ -299,10 +274,4 @@ function purecookieDismiss() {
 
 function purecookieCancel() {
   pureFadeOut("cookieConsentContainer");
-}
-
-async function testeFirebase() {
-  const db = app.db();
-
-  console.log(db);
 }

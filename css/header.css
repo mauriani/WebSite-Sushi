@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Ubuntu:wght@300;400;500;700&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css");
+
+:root {
+  --background: #1f2229;
+  --background-nav: #23232e;
+  --button-active: #dc1637;
+  --white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--white);
+  color: var(--background);
+  -webkit-font-smoothing: antialiased;
+}
+
+header {
+  background: var(--background-nav);
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 20px;
+}
+
+header img {
+  width: 12.5rem;
+}
+
+header nav {
+  display: flex;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+}
+
+header li a {
+  display: block;
+  color: var(--white);
+  text-align: center;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 1.063rem;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+header li a:hover {
+  background-color: var(--button-active);
+  color: var(--white);
+}
+
+header li {
+  margin: 0 15px;
+}
+
+header li:first-child {
+  margin-left: 0;
+}
+
+header li:last-child {
+  margin-right: 0;
+}
+
+@media (max-width: 700px) {
+  header {
+    flex-direction: column;
+  }
+  header img {
+    margin-bottom: 15px;
+  }
+  nav ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  header li a {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 360px) {
+  header li a {
+    font-size: 0.75rem;
+  }
+}
