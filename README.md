@@ -7,7 +7,7 @@
 ## Sobre o projeto
 
 Esse é um projeto web desenvolvido na disciplina de desenvolvimento web da faculdade ucl. A ideia era construir e entender algumas funcionalidades, o projeto consiste em
-cadasttrar usuário, cadastrar cookie, etc.
+cadastrar usuário, cadastrar cookie, nmontar um layout que possa atender deficientes visuais etc.
 
 Site: https://sushiyouagain.netlify.app/
 
