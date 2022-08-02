@@ -17,7 +17,7 @@ const nav = `
   </li>
 
   <li>
-    <a href="cadastro.html" class="menu-link">Cadastra-se</a>
+    <a href="cadastro.html" class="menu-link">Cadastro</a>
   </li>
 
   <li>
